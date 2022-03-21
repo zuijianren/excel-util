@@ -12,9 +12,16 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @AllArgsConstructor
-public class ExportData<T> {
+public class ExportData {
 
-    private Class<T> clazz;
-    private List<T> list;
+    /**
+     * 数据类型
+     */
+    private Class<?> clazz;
+
+    /**
+     * 数据
+     */
+    private List<?> list;
 
 }

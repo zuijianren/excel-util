@@ -13,26 +13,7 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @since: 2022/3/16 14:40
  * @version: 1.0
  */
-public class DefaultTheme implements Theme {
-
-    private Workbook workbook;
-    /**
-     * 顶部样式
-     */
-    private CellStyle topStyle;
-    /**
-     * 标题样式
-     */
-    private CellStyle titleStyle;
-    /**
-     * 内容样式
-     */
-    private CellStyle contentStyle;
-
-    @Override
-    public void init(Workbook workbook)  {
-        this.workbook = workbook;
-    }
+public class DefaultTheme extends Theme {
 
     /**
      * 获取顶部样式
@@ -100,27 +81,6 @@ public class DefaultTheme implements Theme {
         // 水平垂直居中
         cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-    }
-
-
-    /**
-     * 是否创建最上方的顶行
-     *
-     * @return 是否需要
-     */
-    @Override
-    public boolean isCreateTop() {
-        return true;
-    }
-
-    /**
-     * 是否展示序号
-     *
-     * @return 是否展示序号
-     */
-    @Override
-    public boolean isShowNum() {
-        return true;
     }
 
 

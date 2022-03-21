@@ -8,7 +8,24 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @since: 2022/3/16 15:25
  * @version: 1.0
  */
-public interface Theme {
+public abstract class Theme {
+
+    protected Workbook workbook;
+
+    /**
+     * 顶部样式
+     */
+    protected CellStyle topStyle;
+
+    /**
+     * 标题样式
+     */
+    protected CellStyle titleStyle;
+
+    /**
+     * 内容样式
+     */
+    protected CellStyle contentStyle;
 
 
     /**
@@ -16,7 +33,15 @@ public interface Theme {
      *
      * @param workbook Workbook对象
      */
-    void init(Workbook workbook);
+    public void init(Workbook workbook) {
+        // 初始化前, 清空原属性
+        // 因为style对应单独的workbook
+        // 至于为什么设计这个类, 是因为这样可以减少相关对象的创建
+        this.topStyle = null;
+        this.titleStyle = null;
+        this.contentStyle = null;
+        this.workbook = workbook;
+    }
 
 
     /**
@@ -24,33 +49,37 @@ public interface Theme {
      *
      * @return 标题样式
      */
-    CellStyle getTopStyle();
+    public abstract CellStyle getTopStyle();
 
     /**
      * 获取标题样式
      *
      * @return 标题样式
      */
-    CellStyle getTitleStyle();
+    public abstract CellStyle getTitleStyle();
 
     /**
      * 获取内容样式
      *
      * @return 内容样式
      */
-    CellStyle getContentStyle();
+    public abstract CellStyle getContentStyle();
 
     /**
      * 是否创建最上方的顶行
      *
      * @return 是否需要
      */
-    boolean isCreateTop();
+    public boolean isCreateTop() {
+        return true;
+    }
 
     /**
      * 是否展示序号
      *
      * @return 是否展示序号
      */
-    boolean isShowNum();
+    public boolean isShowNum() {
+        return true;
+    }
 }
